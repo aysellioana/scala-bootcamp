@@ -82,55 +82,57 @@ object Chapter2 {
     println(signum(5))
     println(signum(-3))
     println(signum(0))
+
+
+    //ex3: Come up with one situation where the assignment x = y = 1 is valid in Scala.
+    //(Hint: Pick a suitable type for x.)
+    var y = 0
+    val x: Int = {
+      y = 1;
+      y
+    }
+    println()
+    println("ex3")
+    println(s"x = $x")
+    println(s"y = $y")
+
+    //ex4:  Write a Scala equivalent for the Java loop
+    //for (int i = 10; i >= 0; i--) System.out.println(i);
+    println()
+    println("ex4")
+    for (i <- 10 to 0 by -1) {
+      println(i)
+    }
+
+    println()
+    println("ex5")
+    countdown(10)
+
+    println()
+    println("ex6")
+    val result = unicodeProduct("Hello")
+    println(result)
+
+    println()
+    println("ex7")
+    val result2 = unicodeProductVar2("Hello")
+    println(result2)
+
+    println()
+    println("ex8")
+    val resultProduct = product("Product")
+    println(resultProduct)
+
+    println()
+    println("ex9")
+    val resultProductRec = productRec("Product")
+    println(resultProductRec)
+
+    println()
+    println("ex10")
+    println(power(2, 3))
+    println(power(2, -2))
+    println(power(5, 0))
+    println(power(3, 4))
   }
-
-  //ex3: Come up with one situation where the assignment x = y = 1 is valid in Scala.
-  //(Hint: Pick a suitable type for x.)
-  var y = 0
-  val x: Int = {
-    y = 1; y
-  }
-  println()
-  println("ex3")
-  println(s"x = $x")
-  println(s"y = $y")
-
-  //ex4:  Write a Scala equivalent for the Java loop
-  //for (int i = 10; i >= 0; i--) System.out.println(i);
-  println()
-  println("ex4")
-  for (i <- 10 to 0 by -1) {
-    println(i)
-  }
-
-  println()
-  println("ex5")
-  countdown(10)
-
-  println()
-  println("ex6")
-  val result = unicodeProduct("Hello")
-  println(result)
-
-  println()
-  println("ex7")
-  val result2 = unicodeProductVar2("Hello")
-  println(result2)
-
-  println()
-  println("ex8")
-  val resultProduct = product("Product")
-  println(resultProduct)
-
-  println()
-  println("ex9")
-  val resultProductRec = productRec("Product")
-  println(resultProductRec)
-
-  println()
-  println("ex10")
-  println(power(2, 3))
-  println(power(2, -2))
-  println(power(5, 0))
-  println(power(3, 4))
 }
