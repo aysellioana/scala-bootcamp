@@ -1,5 +1,6 @@
 package week2.chapter13
 
+import java.util.TimeZone
 import scala.collection.mutable
 import scala.collection.mutable.ListBuffer
 
@@ -62,6 +63,38 @@ def lookupValues(names: Seq[String], map: Map[String, Int]): Seq[Int] = {
   names.flatMap(name => map.get(name))
 }
 
+//ex5:  Implement a function that works just like mkString, using reduceLeft.
+def myMkString(list: List[String], sep: String): String = {
+  if (list.isEmpty) ""
+  else list.reduceLeft((a, b) => a + sep + b)
+}
+
+//ex8: Write a function that turns an array of Double values into a two-dimensional
+//array. Pass the number of columns as a parameter. For example, with Array(1,
+//2, 3, 4, 5, 6) and three columns, return Array(Array(1, 2, 3), Array(4, 5, 6)).
+//Use the grouped method.
+
+def to2DArray(arr: Array[Double], columns: Int): Array[Array[Double]] = {
+  // Split into groups of 'columns', convert each to Array, and return the result
+  arr.grouped(columns).map(group => group.toArray).toArray
+}
+
+//ex10: The method java.util.TimeZone.getAvailableIDs yields time zones such as Africa/
+//Cairo and Asia/Chungking. Which continent has the most time zones? Hint: groupBy.
+
+def continentWithMostTimeZones(): String = {
+  val allZones = TimeZone.getAvailableIDs.toList
+
+  // Keep only the IDs that contain "/"
+  val validZones = allZones.filter(_.contains("/"))
+  // Extract the continent (the part before the "/")
+  val continents = validZones.map(id => id.split("/")(0))
+  val grouped = continents.groupBy(identity)
+  val continentCounts = grouped.mapValues(_.size)
+  //Find the continent with the most time zones
+  val (topContinent, count) = continentCounts.maxBy(_._2)
+  s"$topContinent ($count time zones)"
+}
 
 object Main extends App{
   println("ex1")
@@ -98,5 +131,23 @@ object Main extends App{
 
   val result = lookupValues(names, scores)
   println(result)
+
+  println()
+  println("ex5")
+  val res = myMkString(List("a", "b", "c"), "-")
+  println(res)
+
+  println()
+  println("ex8")
+  val myArr = Array(1.0, 2.0, 3.0, 4.0, 5.0, 6.0)
+  val myResult = to2DArray(myArr, 3)
+  for (row <- myResult) {
+    println(row.mkString(", "))
+  }
+  println()
+  println("Ex10")
+  println(continentWithMostTimeZones())
+
+
 
 }
