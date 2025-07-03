@@ -72,7 +72,7 @@ object Main extends App {
 
   println()
   println("ex8")
-  val url = "https://www.globallogic.com/"
+  val url = "https://en.wikipedia.org/wiki/Tailor_Swif"
   printImageSourcesFromUrl(url)
 
 }
